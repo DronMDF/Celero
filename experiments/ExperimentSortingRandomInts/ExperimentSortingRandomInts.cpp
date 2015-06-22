@@ -122,7 +122,10 @@ BENCHMARK_F(SortRandInts, InsertionSort, SortFixture, 30, 10000)
 }
 
 // http://www.bfilipek.com/2014/12/top-5-beautiful-c-std-algorithms.html
-template<class FwdIt, class Compare = std::less<>>
+template<class It>
+using value_type_t = typename std::iterator_traits<It>::value_type;
+
+template<class FwdIt, class Compare = std::less<value_type_t<FwdIt>>>
 void quickSort(FwdIt first, FwdIt last, Compare cmp = Compare {})
 {
 	auto const N = std::distance(first, last);
